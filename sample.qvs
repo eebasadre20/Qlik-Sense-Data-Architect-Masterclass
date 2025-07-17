@@ -1,0 +1,20 @@
+SET ThousandSep=',';
+SET DecimalSep='.';
+SET MoneyThousandSep=',';
+SET MoneyDecimalSep='.';
+SET MoneyFormat='$#,##0.00;-#,##0.00';
+SET TimeFormat='hh:mm:ss';
+SET DateFormat='YYYY-MM-DD';
+
+LOAD
+    EmployeeID,
+    FirstName,
+    LastName,
+    HireDate,
+    Salary
+FROM
+    [Employees.csv]
+    (txt, utf8, embedded labels, delimiter is ',', msq);
+
+STORE Employees INTO Employees.qvd (qvd);
+DROP Table Employees;
